@@ -1,3 +1,9 @@
+# ビルドする
+# docker build -t　タグ名 . 　-tは名前（タグ）をつける
+#　コンテナを消すため
+# docker rm -f `docker ps -aq`　-a 起動中でも全て出す    -q　IDだけ出す
+
+
 FROM debian:buster
 
 RUN apt update && apt install -y nginx openssl 
