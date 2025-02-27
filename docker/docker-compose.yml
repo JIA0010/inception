@@ -7,7 +7,7 @@ services:
     container_name: nginx
     build: ./nginx
     ports:
-      - "8080:80"
+      - "443:443"
     networks:
       - inception
   
@@ -16,19 +16,19 @@ services:
     build: ./wordpress
     ports:
       - "8081:80"
-    depends_on:
-      - db, nginx
+    # depends_on:
+    #   - db, nginx
     networks:
       - inception
     volumes:
       - ./wordpress:/var/www/html
 
-  mariadb:
-    container_name: mariadb
-    build: ./mariadb
-    ports:
-      - "3306:3306"
-    networks:
-      - inception
-    volumes:
-      - ./db:/var/lib/mysql
+  # mariadb:
+  #   container_name: mariadb
+  #   build: ./mariadb
+  #   ports:
+  #     - "3306:3306"
+  #   networks:
+  #     - inception
+  #   volumes:
+  #     - ./db:/var/lib/mysql

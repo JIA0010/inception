@@ -1,5 +1,12 @@
-FROM php:8.1-apache
-
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+FROM debian:buster
 
 
+RUN apt update && apt install -y curl
+
+RUN apt install php-fpm php-mysql -y
+
+COPY ./script.sh /
+COPY ./wp-config.php /
+
+
+CMD [ "/script.sh" ]
