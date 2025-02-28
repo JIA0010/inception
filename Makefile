@@ -36,5 +36,7 @@ restart:
 
 re: down up
 
+RE: bals all
+
 .PHONY: all up down stop start status restart re
 

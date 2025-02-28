@@ -5,9 +5,9 @@ FROM debian:buster
 RUN apt update && apt install -y curl php php-mysql php-fpm
 
 
-COPY ./wordpress.sh /
-COPY ./wp-config.php /
-RUN chmod +x ./wordpress.sh
+COPY ./wordpress.sh /tmp/
+COPY ./wp-config.php /tmp/
+RUN chmod +x /tmp/wordpress.sh
 
 
-CMD [ "/wordpress.sh" ]
+CMD [ "/tmp/wordpress.sh" ]

@@ -1,6 +1,5 @@
+#!/bin/bash
 #ベースは今回はdebian。ワードプレスはdocker hubから取得したものによると（ドキュメントを読んでもだと思うが）/var/www/htmlにインストールされる。
-mkdir /var/www/
-mkdir /var/www/html
 
 cd /var/www/html
 

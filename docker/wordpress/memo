@@ -7,3 +7,10 @@
 
 
 他に必要なことは？php_pfmをインストールし、使えるようにする。使えるの定義は？いやまずそもそも起動させることから始めないと。
+
+問題点：３つのコンテナは作られるが、nginxとwordpressが動作しない、すぐにEXITしてしまう。
+```bash
+✗ docker logs wordpress
+exec /wordpress.sh: exec format error
+```
+シンタックスエラー
