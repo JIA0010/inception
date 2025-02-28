@@ -1,6 +1,21 @@
 
 all: up
 
+clean:
+	docker-compose -f ./docker/docker-compose.yml down --rmi all --volumes
+
+bals:
+	# すべてのコンテナを削除
+	docker rm -f `docker ps -aq` | true
+	# すべてのイメージを削除
+	docker rmi -f `docker images -q` | true
+	# すべてのネットワークを削除
+	docker network prune -f | true
+	# すべてのボリュームを削除
+	docker volume prune -f | true
+	# すべての未使用データを削除
+	docker system prune -a -f --volumes | true
+
 up:
 	docker-compose -f ./docker/docker-compose.yml up -d
 
