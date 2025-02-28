@@ -17,4 +17,9 @@ status:
 	docker-compose -f ./docker/docker-compose.yml  ps
 
 restart:
-	docker-compose restart -f ./docker/docker-compose.yml
+	docker-compose -f ./docker/docker-compose.yml  restart
+
+re: down up
+
+.PHONY: all up down stop start status restart re
+

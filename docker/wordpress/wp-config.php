@@ -1,5 +1,6 @@
 
 
+<!-- getenvを使って右側の引数をenvファイルに突っ込む。べた描きすると落とされる。 -->
 define('DB_NAME', 'inception'); // データベース名
 define('DB_USER', 'user'); // データベースユーザー名
 define('DB_PASSWORD', 'inception'); // データベースパスワード
