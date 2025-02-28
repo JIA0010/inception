@@ -1,10 +1,12 @@
 
 
-<!-- getenvを使って右側の引数をenvファイルに突っ込む。べた描きすると落とされる。 -->
+<!-- getenvを使って右側の引数をenvファイルに突っ込む。べた描きすると落とされる。
 define('DB_NAME', 'inception'); // データベース名
 define('DB_USER', 'user'); // データベースユーザー名
 define('DB_PASSWORD', 'inception'); // データベースパスワード
-define('DB_HOST', 'mariadb'); // データベースホスト（通常は 'localhost'）
+define('DB_HOST', 'mariadb'); // データベースホスト（通常は 'localhost'） -->
+
+<!-- define('DB_NAME', getenv('DB_NAME')); -->
 
 <!-- 
 define('AUTH_KEY', 'ランダムな文字列');

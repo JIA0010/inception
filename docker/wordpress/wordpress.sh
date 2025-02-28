@@ -28,4 +28,4 @@ sed -i "s/password_here/$DB_PASSWORD/g" /var/www/html/wp-config.php
 #download and install wordpress
 wp core install --url=$WORDPRESS_URL --title=$WORDPRESS_TITLE --admin_user=$WORDPRESS_ADMIN_USER --admin_password=$WORDPRESS_ADMIN_PASSWORD --skip-email --allow-root
 
-/usr/sbin/php-fpm7.3 -F
+/usr/sbin/php-fpm8.2 -F

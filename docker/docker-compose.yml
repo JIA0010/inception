@@ -1,36 +1,45 @@
-# networks:
-#   inception:
-#     name: inception
-
 services:
-  # nginx:
-  #   container_name: nginx
-  #   build: ./nginx
-  #   ports:
-  #     - "443:443"
-  #   networks:
-  #     - inception
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - "443:443"
+    networks:
+      - inception
   
-  # wordpress:
-  #   container_name: wordpress
-  #   build: ./wordpress
-  #   ports:
-  #     - "8081:80"
-  #   # depends_on:
-  #   #   - db, nginx
-  #   networks:
-  #     - inception
-  #   volumes:
-  #     - ./wordpress:/var/www/html
+  wordpress:
+    container_name: wordpress
+    build: ./wordpress
+    ports:
+      - "8081:80"
+    depends_on:
+      - mariadb
+      - nginx
+    networks:
+      - inception
+    volumes:
+      - wordpress:/var/www/html
+    env_file:
+      - .env
 
   mariadb:
     container_name: mariadb
     build: ./mariadb
+    depends_on:
+      - nginx
     ports:
       - "3306:3306"
-    # networks:
-    #   - inception
+    networks:
+      - inception
     volumes:
-      - ./db:/var/lib/mysql
+      - db:/var/lib/mysql
     env_file:
       - .env
+
+volumes:
+  wordpress:
+  db:
+
+networks:
+  inception:
+    name: inception
