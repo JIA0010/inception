@@ -2,7 +2,18 @@ FROM debian:buster
 
 
 # WordPress は PHPで動くWebアプリケーション なので、PHPの実行環境が必要
-RUN apt update && apt install -y curl php php-mysql php-fpm
+# RUN apt update && apt install -y curl php php-mysql php-fpm
+RUN apt update && apt install -y \
+    curl \
+    php \
+    php-fpm \
+    php-mysql \
+    php-mbstring \
+    php-xml \
+    php-curl \
+    php-zip
+
+
 
 
 COPY ./wordpress.sh /tmp/
