@@ -26,7 +26,8 @@ RUN chmod +x /tmp/wordpress.sh
 
 EXPOSE 9000
 
-# ENTRYPOINT [ "/tmp/wordpress.sh" ]
+ENTRYPOINT [ "/tmp/wordpress.sh" ]
 # CMD ["tail", "-f", "/dev/null"]
 
-CMD [ "/tmp/wordpress.sh" ]
+# CMD [ "/tmp/wordpress.sh" ]
+CMD ["php-fpm7.4", "-F"]
