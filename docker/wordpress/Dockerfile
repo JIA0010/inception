@@ -13,7 +13,7 @@ RUN apt update && apt install -y \
     php-xml \
     php-curl \
     php-zip \
-    gettext \
+    gettext 
     # envsubst は gettext パッケージに含まれています
 
 

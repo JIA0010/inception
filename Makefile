@@ -12,7 +12,7 @@ bals:
 	# すべてのネットワークを削除
 	docker network prune -f | true
 	# すべてのボリュームを削除
-	docker volume prune -f | true
+	docker volume rm `docker volume ls -q` | true
 	# すべての未使用データを削除
 	docker system prune -a -f --volumes | true
 
