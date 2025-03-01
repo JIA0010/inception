@@ -3,7 +3,9 @@
 # 【別ターミナルで】docker exec -it mariadb-container bash
 FROM debian:buster
 
-RUN apt update && apt install -y mariadb-server gettext
+RUN apt update && apt install -y \
+    mariadb-server \
+    gettext
 
 COPY ./mariadb_entrypoint.sh /tmp/
 RUN chmod +x /tmp/mariadb_entrypoint.sh

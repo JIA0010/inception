@@ -19,15 +19,15 @@ chmod 755 wp-cli.phar
 # Move it to /usr/local/bin/
 mv wp-cli.phar /usr/local/bin/wp
 
-# Download WordPress
-if [ ! -f wp-config-sample.php ]; then
+# Download WordPress  ここが現在問題
+if [ ! -f wp-config.php ]; then
     # wp core download --allow-root
     wp core download --path=/var/www/html --locale=ja --allow-root
 fi
 # wp core download --allow-root
 
 # Create wp-config.php(rename wp-config-sample.php)
-if [ -f /var/www/html/wp-config-sample.php ]; then
+if [ -f /var/www/html/wp-config.php ]; then
     mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 fi
 # mv /wp-config.php /var/www/html/wp-config.php # Copy wp-config.php to the right place
@@ -65,15 +65,3 @@ exec "$@"
 
 
 # docker exec -it wordpress
-
-
-
-
-
-
-# 可能性
-# wp-cli のキャッシュフォルダの権限を修正：
-
-# mkdir -p /root/.wp-cli
-# chown -R root:root /root/.wp-cli
-# chmod -R 755 /root/.wp-cli
