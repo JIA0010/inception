@@ -14,7 +14,8 @@ RUN apt update && apt install -y \
     php-curl \
     php-zip \
     gettext \
-    sendmail
+    sendmail \
+    mariadb-client
     # envsubst は gettext パッケージに含まれています
 
 
