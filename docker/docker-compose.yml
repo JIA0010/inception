@@ -37,7 +37,7 @@ services:
     networks:
       - inception
     volumes:
-      - db:/var/lib/mysql
+      - db:/var/lib/mysql   #ここはベタガキした方がいい。名前付きは権限問題に直面する。
     env_file:
       - .env
 

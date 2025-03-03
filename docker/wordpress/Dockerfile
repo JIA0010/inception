@@ -23,7 +23,10 @@ RUN apt update && apt install -y \
 COPY ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./wordpress.sh /tmp/
 COPY ./wp-config.php /tmp/
+# COPY ./ /var/www/html/path/to/css/files  # CSSファイルをコピー
+
 RUN chmod +x /tmp/wordpress.sh
+# RUN chmod -R 755 /var/www/html/path/to/css/files
 
 EXPOSE 9000
 
