@@ -20,7 +20,7 @@ RUN apt update && apt install -y \
 
 
 
-
+COPY ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./wordpress.sh /tmp/
 COPY ./wp-config.php /tmp/
 RUN chmod +x /tmp/wordpress.sh

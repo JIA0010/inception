@@ -16,8 +16,12 @@ bals:
 	# すべての未使用データを削除
 	docker system prune -a -f --volumes | true
 
-up:
+up: 
 	docker-compose -f ./docker/docker-compose.yml up -d
+	@sudo cp /etc/hosts /etc/hosts.backup
+	@sudo chmod 777 /etc/hosts
+	@sudo echo "127.0.0.1 cjia.42.fr" >> /etc/hosts
+	@sudo chmod 644  /etc/hosts
 
 down:
 	docker-compose -f ./docker/docker-compose.yml down
