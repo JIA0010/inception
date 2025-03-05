@@ -20,19 +20,9 @@ chmod 755 wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 rm -rf /var/www/html/*
 
-# Download WordPress  ここが現在問題
-if [ ! -f /var/www/html/wp-config.php ]; then
-    # wp core download --allow-root
+# # Download WordPress 
     wp core download --path=/var/www/html --locale=ja --allow-root
-fi
-# wp core download --allow-root
-
-# Create wp-config.php(rename wp-config-sample.php)
-# if [ -f /var/www/html/wp-config.php ]; then
-#     mv /var/www/html/wp-config.php /var/www/html/wp-config.php
-# fi
-# mv /wp-config.php /var/www/html/wp-config.php # Copy wp-config.php to the right place
-
+    rm -f $wd/wp-config-sample.php
 
 
 #いるかわからないが、wp-cliの設定を行う
@@ -48,18 +38,8 @@ else
 fi
 
 
-# wp config create --path=/var/www/html \
-#     --dbname=$DB_NAME \
-#     --dbuser=$DB_USER \
-#     --dbpass=$DB_PASSWORD \
-#     --dbhost=$DB_HOST \
-#     --allow-root
-
 #download and install wordpress
 wp core install --url=$WORDPRESS_URL --title=$WORDPRESS_TITLE --admin_user=$WORDPRESS_ADMIN_USER --admin_password=$WORDPRESS_ADMIN_PASSWORD --admin_email=$WORDPRESS_ADMIN_PASSWORD --allow-root
-
-
-# exec "$@"
 
 # Create /run/php directory
 mkdir -p /run/php
