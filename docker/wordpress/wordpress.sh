@@ -22,7 +22,7 @@ rm -rf /var/www/html/*
 
 # # Download WordPress 
     wp core download --path=/var/www/html --locale=ja --allow-root
-    rm -f $wd/wp-config-sample.php
+    rm -f ./wp-config-sample.php
 
 
 #いるかわからないが、wp-cliの設定を行う
@@ -44,6 +44,6 @@ wp core install --url=$WORDPRESS_URL --title=$WORDPRESS_TITLE --admin_user=$WORD
 # Create /run/php directory
 mkdir -p /run/php
 
-exec php-fpm7.3 -F
+exec php-fpm8.2 -F
 
 # docker exec -it wordpress

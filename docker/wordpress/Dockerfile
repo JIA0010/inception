@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:stable
 
 
 # WordPress は PHPで動くWebアプリケーション なので、PHPの実行環境が必要
@@ -20,7 +20,7 @@ RUN apt update && apt install -y \
 
 
 
-COPY ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY ./www.conf /etc/php/8.2/fpm/pool.d/www.conf
 COPY ./wordpress.sh /tmp/
 COPY ./wp-config.php /tmp/
 # COPY ./ /var/www/html/path/to/css/files  # CSSファイルをコピー
