@@ -1,7 +1,7 @@
 # docker rm -f mariadb-container ; docker build -t mariadb .
 # docker run --name mariadb-container mariadb
 # 【別ターミナルで】docker exec -it mariadb-container bash
-FROM debian:stable
+FROM debian:12.8
 
 RUN apt update && apt install -y \
     mariadb-server \
@@ -18,6 +18,5 @@ VOLUME /var/lib/mysql
 
 
 RUN mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld
-USER mysql
 
 ENTRYPOINT ["/tmp/mariadb_entrypoint.sh"]
