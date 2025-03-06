@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:12.8
 
 
 # WordPress は PHPで動くWebアプリケーション なので、PHPの実行環境が必要

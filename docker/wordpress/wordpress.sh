@@ -37,6 +37,11 @@ else
     wp config set DB_HOST "$DB_HOST" --path=/var/www/html --allow-root
 fi
 
+if ! wp user get $WP_USER --allow-root > /dev/null 2>&1; then
+    echo "ユーザー $WP_USER が存在しません。新規作成します..."
+    wp user create $WORDPRESS_USER $WORDPRESS_EMAIL --role=author --user_pass=$WORDPRESS_PASS --allow-root
+fi
+
 
 #download and install wordpress
 wp core install --url=$WORDPRESS_URL --title=$WORDPRESS_TITLE --admin_user=$WORDPRESS_ADMIN_USER --admin_password=$WORDPRESS_ADMIN_PASSWORD --admin_email=$WORDPRESS_ADMIN_PASSWORD --allow-root

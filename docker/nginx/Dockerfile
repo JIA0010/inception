@@ -4,7 +4,7 @@
 # docker rm -f `docker ps -aq`　-a 起動中でも全て出す    -q　IDだけ出す
 
 
-FROM debian:stable
+FROM debian:12.8
 
 RUN apt update && apt install -y nginx openssl 
 # RUN  apk update && apk add --no-cache nginx openssl
