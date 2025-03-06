@@ -18,6 +18,5 @@ VOLUME /var/lib/mysql
 
 
 RUN mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld
-USER mysql
 
 ENTRYPOINT ["/tmp/mariadb_entrypoint.sh"]
