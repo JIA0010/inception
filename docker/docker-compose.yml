@@ -8,7 +8,7 @@ services:
       - wordpress
       - mariadb
     volumes:
-      - wordpress:/var/www/html
+      - web:/var/www/html
     networks:
       - inception
   
@@ -23,7 +23,7 @@ services:
     networks:
       - inception
     volumes:
-      - wordpress:/var/www/html
+      - web:/var/www/html
     env_file:
       - .env
 
@@ -41,12 +41,19 @@ services:
     env_file:
       - .env
 
-volumes:
-  wordpress:
-  db:
-
 networks:
   inception:
     name: inception
     driver: bridge
   
+volumes:
+  db:
+    driver_opts:
+      type: none
+      device: ${HOME}/data/db
+      o: bind
+  web:
+    driver_opts:
+      type: none
+      device: ${HOME}/data/web
+      o: bind

@@ -2,6 +2,7 @@
 all: up
 
 clean:
+	rm -rf ~/data/db ~/data/web
 	docker-compose -f ./docker/docker-compose.yml down --rmi all --volumes
 
 bals:
@@ -15,8 +16,11 @@ bals:
 	docker volume rm `docker volume ls -q` | true
 	# すべての未使用データを削除
 	docker system prune -a -f --volumes | true
+	# バインドマウントしたホストOSのボリュームを削除
+	rm -rf ~/data/db ~/data/web
 
 up: 
+	mkdir -p ~/data/db ~/data/web
 	docker-compose -f ./docker/docker-compose.yml up -d
 	@sudo cp /etc/hosts /etc/hosts.backup
 	@sudo chmod 777 /etc/hosts
