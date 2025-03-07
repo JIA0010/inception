@@ -22,12 +22,12 @@ chmod 755 wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 rm -rf /var/www/html/*
 
-# # Download WordPress 
+# Download WordPress 
     wp core download --path=/var/www/html --locale=ja --allow-root
     rm -f ./wp-config-sample.php
 
 
-#いるかわからないが、wp-cliの設定を行う --pathが必要。調べる
+# wp-config.php が存在しない場合は作成
 if [ ! -f /var/www/html/wp-config.php ]; then
     echo "wp-config.php が存在しません。新規作成します..."
     wp config create --path=/var/www/html --dbname="$DB_NAME" --dbuser="$DB_USER" --dbpass="$DB_PASSWORD" --dbhost="$DB_HOST" --allow-root

@@ -19,7 +19,6 @@ services:
       - "9000:9000"
     depends_on:
       - mariadb
-      # - nginx
     networks:
       - inception
     volumes:
@@ -30,14 +29,12 @@ services:
   mariadb:
     container_name: mariadb
     build: ./mariadb
-    # depends_on:
-    #   - nginx
     ports:
       - "3306:3306"
     networks:
       - inception
     volumes:
-      - db:/var/lib/mysql   #ここはベタガキした方がいい。名前付きは権限問題に直面する。
+      - db:/var/lib/mysql
     env_file:
       - .env
 

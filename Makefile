@@ -1,50 +1,47 @@
+DCOMPOSE = docker-compose -f ./srcs/docker-compose.yml
 
 all: up
 
-clean:
-	rm -rf ~/data/db ~/data/web
-	docker-compose -f ./docker/docker-compose.yml down --rmi all --volumes
-
 bals:
+	# すべてのコンテナを停止
+	docker stop `docker ps -qa` | true
 	# すべてのコンテナを削除
-	docker rm -f `docker ps -aq` | true
+	docker rm `docker ps -qa` | true
 	# すべてのイメージを削除
-	docker rmi -f `docker images -q` | true
-	# すべてのネットワークを削除
-	docker network prune -f | true
+	docker rmi `docker images -qa` | true
 	# すべてのボリュームを削除
 	docker volume rm `docker volume ls -q` | true
-	# すべての未使用データを削除
-	docker system prune -a -f --volumes | true
+	# すべてのネットワークを削除
+	docker network rm `docker network ls -q` | true
 	# バインドマウントしたホストOSのボリュームを削除
 	rm -rf ~/data/db ~/data/web
 
 up: 
 	mkdir -p ~/data/db ~/data/web
-	docker-compose -f ./docker/docker-compose.yml up -d
+	$(DCOMPOSE) up -d
+# hostsファイルに追記（名前解決）
 	@sudo cp /etc/hosts /etc/hosts.backup
 	@sudo chmod 777 /etc/hosts
 	@sudo echo "127.0.0.1 cjia.42.fr" >> /etc/hosts
 	@sudo chmod 644  /etc/hosts
 
+# --rmi all --volumes を付けるとイメージやボリュームも削除可能
 down:
-	docker-compose -f ./docker/docker-compose.yml down
+	$(DCOMPOSE) down --rmi all --volumes
 
 stop:
-	docker-compose -f ./docker/docker-compose.yml stop
+	$(DCOMPOSE) stop
 
 start:
-	docker-compose -f ./docker/docker-compose.yml start
+	$(DCOMPOSE) start
 
 status:
-	docker-compose -f ./docker/docker-compose.yml  ps
+	$(DCOMPOSE)  ps
 
 restart:
-	docker-compose -f ./docker/docker-compose.yml  restart
+	$(DCOMPOSE)  restart
 
 re: down up
 
-RE: bals all
-
-.PHONY: all up down stop start status restart re
+.PHONY: all up down stop start status restart re bals
 
