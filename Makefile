@@ -14,10 +14,10 @@ bals:
 	# すべてのネットワークを削除
 	docker network rm `docker network ls -q` | true
 	# バインドマウントしたホストOSのボリュームを削除
-	rm -rf ~/data/db ~/data/web
+	@sudo rm -rf ~/data/db ~/data/web
 
 up: 
-	mkdir -p ~/data/db ~/data/web
+	@sudo mkdir -p ~/data/db ~/data/web
 	$(DCOMPOSE) up -d
 # hostsファイルに追記（名前解決）
 	@sudo cp /etc/hosts /etc/hosts.backup
@@ -28,6 +28,7 @@ up:
 # --rmi all --volumes を付けるとイメージやボリュームも削除可能
 down:
 	$(DCOMPOSE) down --rmi all --volumes
+	@sudo mv /etc/hosts.backup /etc/hosts
 
 stop:
 	$(DCOMPOSE) stop
